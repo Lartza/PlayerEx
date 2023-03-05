@@ -27,7 +27,7 @@ public class ConfigImpl implements ConfigData, ExConfig {
 	
 	@ConfigEntry.Category(value = "server")
 	@ConfigEntry.Gui.Tooltip(count = 2)
-	protected int skillPointsPerLevelUp = 1;
+	protected float skillPointsPerLevelUp = 1.0F;
 	
 	@ConfigEntry.Category(value = "server")
 	@ConfigEntry.Gui.Tooltip(count = 2)
@@ -104,7 +104,7 @@ public class ConfigImpl implements ConfigData, ExConfig {
 	}
 	
 	@Override
-	public int skillPointsPerLevelUp() {
+	public float skillPointsPerLevelUp() {
 		return ConfigServer.INSTANCE.skillPointsPerLevelUp;
 	}
 	

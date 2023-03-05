@@ -155,7 +155,7 @@ public class AttributesPageLayer extends PageLayer {
 						if(this.canRefund()) {
 							button.active = modifierValue >= 1.0D;
 						} else {
-							button.active = modifierValue < max && this.playerData.skillPoints() >= 1;
+							button.active = modifierValue < max && this.playerData.skillPoints() >= 1.0F;
 						}
 						
 						button.alt = this.canRefund();

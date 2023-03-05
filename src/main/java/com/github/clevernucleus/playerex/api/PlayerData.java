@@ -45,7 +45,7 @@ public interface PlayerData extends Component {
 	 * Adds skill points to the player.
 	 * @param pointsIn
 	 */
-	void addSkillPoints(final int pointsIn);
+	void addSkillPoints(final float pointsIn);
 	
 	/**
 	 * Adds refund points to the player.
@@ -57,7 +57,7 @@ public interface PlayerData extends Component {
 	/**
 	 * @return Current skill points.
 	 */
-	int skillPoints();
+	float skillPoints();
 	
 	/**
 	 * @return Current refund points.

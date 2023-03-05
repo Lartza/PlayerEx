@@ -46,7 +46,7 @@ public enum PacketType {
 	private static boolean level(final MinecraftServer server, final ServerPlayerEntity player, final PlayerData data) {
 		ExConfig config = ExAPI.getConfig();
 		int requiredXp = config.requiredXp(player);
-		int skillPoint = config.skillPointsPerLevelUp();
+		float skillPoint = config.skillPointsPerLevelUp();
 		
 		if(player.experienceLevel >= requiredXp) {
 			player.addExperienceLevels(-requiredXp);
@@ -58,8 +58,8 @@ public enum PacketType {
 	}
 	
 	private static boolean skill(final MinecraftServer server, final ServerPlayerEntity player, final PlayerData data) {
-		if(data.skillPoints() >= 1) {
-			data.addSkillPoints(-1);
+		if(data.skillPoints() >= 1.0F) {
+			data.addSkillPoints(-1.0F);
 			return true;
 		} else {
 			return false;
@@ -69,7 +69,7 @@ public enum PacketType {
 	private static boolean refund(final MinecraftServer server, final ServerPlayerEntity player, final PlayerData data) {
 		if(data.refundPoints() >= 1) {
 			data.addRefundPoints(-1);
-			data.addSkillPoints(1);
+			data.addSkillPoints(1.0F);
 			return true;
 		} else {
 			return false;

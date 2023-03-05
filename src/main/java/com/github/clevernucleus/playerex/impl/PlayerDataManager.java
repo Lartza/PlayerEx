@@ -32,7 +32,8 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 	private static final String KEY_SET = "Set", KEY_REMOVE = "Remove", KEY_RESET = "Reset", KEY_MODIFIERS = "Modifiers", KEY_REFUND_POINTS = "RefundPoints", KEY_SKILL_POINTS = "SkillPoints";
 	private final PlayerEntity player;
 	private final Map<Identifier, Double> data;
-	private int refundPoints, skillPoints;
+	private int refundPoints;
+	private float skillPoints;
 	public boolean hasNotifiedLevelUp;
 	
 	public PlayerDataManager(final PlayerEntity player) {
@@ -145,7 +146,7 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 		}
 		
 		this.refundPoints = 0;
-		this.skillPoints = 0;
+		this.skillPoints = 0.0F;
 		this.sync((buf, player) -> {
 			NbtCompound tag = new NbtCompound();
 			tag.put(KEY_RESET, list);
@@ -154,11 +155,11 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 	}
 	
 	@Override
-	public void addSkillPoints(final int pointsIn) {
+	public void addSkillPoints(final float pointsIn) {
 		this.skillPoints += pointsIn;
 		this.sync((buf, player) -> {
 			NbtCompound tag = new NbtCompound();
-			tag.putInt(KEY_SKILL_POINTS, this.skillPoints);
+			tag.putFloat(KEY_SKILL_POINTS, this.skillPoints);
 			buf.writeNbt(tag);
 		});
 	}
@@ -184,7 +185,7 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 	}
 	
 	@Override
-	public int skillPoints() {
+	public float skillPoints() {
 		return this.skillPoints;
 	}
 	
@@ -224,7 +225,7 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 			}
 			
 			this.refundPoints = 0;
-			this.skillPoints = 0;
+			this.skillPoints = 0.0F;
 			this.hasNotifiedLevelUp = false;
 		}
 		
@@ -237,7 +238,7 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 		}
 		
 		if(tag.contains(KEY_SKILL_POINTS)) {
-			this.skillPoints = tag.getInt(KEY_SKILL_POINTS);
+			this.skillPoints = tag.getFloat(KEY_SKILL_POINTS);
 		}
 	}
 	
@@ -245,7 +246,7 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 	public void readFromNbt(NbtCompound tag) {
 		this.readModifiersFromNbt(tag, this::trySet);
 		this.refundPoints = tag.getInt(KEY_REFUND_POINTS);
-		this.skillPoints = tag.getInt(KEY_SKILL_POINTS);
+		this.skillPoints = tag.getFloat(KEY_SKILL_POINTS);
 		this.hasNotifiedLevelUp = tag.getBoolean("NotifiedLevelUp");
 	}
 	
@@ -263,7 +264,7 @@ public final class PlayerDataManager implements PlayerData, AutoSyncedComponent 
 		
 		tag.put(KEY_MODIFIERS, modifiers);
 		tag.putInt(KEY_REFUND_POINTS, this.refundPoints);
-		tag.putInt(KEY_SKILL_POINTS, this.skillPoints);
+		tag.putFloat(KEY_SKILL_POINTS, this.skillPoints);
 		tag.putBoolean("NotifiedLevelUp", this.hasNotifiedLevelUp);
 	}
 }

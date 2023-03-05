@@ -24,7 +24,7 @@ public final class ConfigServer {
 	protected boolean resetOnDeath;
 	protected boolean disableAttributesGui;
 	protected boolean showLevelNameplates;
-	protected int skillPointsPerLevelUp;
+	protected float skillPointsPerLevelUp;
 	protected int restorativeForceTicks;
 	protected int restorativeForceMultiplier;
 	protected int expNegationFactor;
@@ -58,7 +58,7 @@ public final class ConfigServer {
 		this.resetOnDeath = tag.getBoolean(RESET_ON_DEATH);
 		this.disableAttributesGui = tag.getBoolean(DISABLE_ATTRIBUTES_GUI);
 		this.showLevelNameplates = tag.getBoolean(LEVEL_NAMEPLATE);
-		this.skillPointsPerLevelUp = tag.getInt(SKILL_POINTS_PER_LEVEL_UP);
+		this.skillPointsPerLevelUp = tag.getFloat(SKILL_POINTS_PER_LEVEL_UP);
 		this.restorativeForceTicks = tag.getInt(RESTORATIVE_FORCE_TICKS);
 		this.restorativeForceMultiplier = tag.getInt(RESTORATIVE_FORCE_MULTIPLIER);
 		this.expNegationFactor = tag.getInt(EXP_NEGATION_FACTOR);
@@ -70,7 +70,7 @@ public final class ConfigServer {
 		tag.putBoolean(RESET_ON_DEATH, this.resetOnDeath);
 		tag.putBoolean(DISABLE_ATTRIBUTES_GUI, this.disableAttributesGui);
 		tag.putBoolean(LEVEL_NAMEPLATE, this.showLevelNameplates);
-		tag.putInt(SKILL_POINTS_PER_LEVEL_UP, this.skillPointsPerLevelUp);
+		tag.putFloat(SKILL_POINTS_PER_LEVEL_UP, this.skillPointsPerLevelUp);
 		tag.putInt(RESTORATIVE_FORCE_TICKS, this.restorativeForceTicks);
 		tag.putInt(RESTORATIVE_FORCE_MULTIPLIER, this.restorativeForceMultiplier);
 		tag.putInt(EXP_NEGATION_FACTOR, this.expNegationFactor);

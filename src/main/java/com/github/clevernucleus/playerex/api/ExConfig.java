@@ -27,7 +27,7 @@ public interface ExConfig {
 	 * Requires world restart. Server option, synced to Client.
 	 * @return The number of Skill Points received upon levelling up.
 	 */
-	int skillPointsPerLevelUp();
+	float skillPointsPerLevelUp();
 	
 	/**
 	 * Dependent on Level Formula option. Requires world restart. Server option, synced to Client.
